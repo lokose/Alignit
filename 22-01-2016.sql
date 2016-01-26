@@ -39,7 +39,7 @@ CREATE TABLE `alignment_assets_excellence` (
 
 LOCK TABLES `alignment_assets_excellence` WRITE;
 /*!40000 ALTER TABLE `alignment_assets_excellence` DISABLE KEYS */;
-INSERT INTO `alignment_assets_excellence` VALUES (6,1),(11,2);
+INSERT INTO `alignment_assets_excellence` VALUES (25,1),(26,3),(25,4),(25,9),(26,9);
 /*!40000 ALTER TABLE `alignment_assets_excellence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `alignment_objectives_excellence` (
 
 LOCK TABLES `alignment_objectives_excellence` WRITE;
 /*!40000 ALTER TABLE `alignment_objectives_excellence` DISABLE KEYS */;
-INSERT INTO `alignment_objectives_excellence` VALUES (2,6);
+INSERT INTO `alignment_objectives_excellence` VALUES (2,31),(8,31),(3,55),(4,55),(6,55),(8,55),(1,57),(4,57),(7,57);
 /*!40000 ALTER TABLE `alignment_objectives_excellence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `business_objectives` (
   PRIMARY KEY (`id`),
   KEY `fk_business_objectives_company1_idx` (`company_id`),
   CONSTRAINT `fk_business_objectives_company1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `business_objectives` (
 
 LOCK TABLES `business_objectives` WRITE;
 /*!40000 ALTER TABLE `business_objectives` DISABLE KEYS */;
-INSERT INTO `business_objectives` VALUES (6,'uh',4),(7,'',4),(8,'m',4),(9,' ih',4),(10,'ALine',5);
+INSERT INTO `business_objectives` VALUES (31,'Test',13),(55,'fsdfs',13),(57,'Test7',13);
 /*!40000 ALTER TABLE `business_objectives` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,7 @@ CREATE TABLE `company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (4,'Juan'),(5,'Hola');
+INSERT INTO `company` VALUES (13,'Test');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,13 +132,13 @@ DROP TABLE IF EXISTS `it_assets`;
 CREATE TABLE `it_assets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `budget` decimal(25,9) DEFAULT NULL,
-  `headcount` decimal(18,2) DEFAULT NULL,
+  `budget` varchar(60) DEFAULT NULL,
+  `headcount` varchar(60) DEFAULT NULL,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_it_assets_company1_idx` (`company_id`),
   CONSTRAINT `fk_it_assets_company1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `it_assets` (
 
 LOCK TABLES `it_assets` WRITE;
 /*!40000 ALTER TABLE `it_assets` DISABLE KEYS */;
-INSERT INTO `it_assets` VALUES (6,'aline la mejor',3.000000000,3.00,4),(9,'wew',232.000000000,3232.00,5),(11,'sg',3.000000000,4.00,4);
+INSERT INTO `it_assets` VALUES (25,'Email','20000000','50',13),(26,'dgdf','4574','457',13);
 /*!40000 ALTER TABLE `it_assets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,19 +160,9 @@ DROP TABLE IF EXISTS `operational_excellence_dimensions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `operational_excellence_dimensions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name2` varchar(45) DEFAULT NULL,
-  `manage_service_quality` varchar(45) DEFAULT NULL,
-  `realize_scale_economies` varchar(45) DEFAULT NULL,
-  `optimize_it_internal_processes` varchar(45) DEFAULT NULL,
-  `standardize_platforms_and_architecture` varchar(45) DEFAULT NULL,
-  `deliver_on_schedule` varchar(45) DEFAULT NULL,
-  `effectively_support_end_users` varchar(45) DEFAULT NULL,
-  `improve_business_productivity` varchar(45) DEFAULT NULL,
-  `propose_enabling_solutions` varchar(45) DEFAULT NULL,
-  `understand_emerging_technologies` varchar(45) DEFAULT NULL,
-  `understand_business_units_strengths` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +171,7 @@ CREATE TABLE `operational_excellence_dimensions` (
 
 LOCK TABLES `operational_excellence_dimensions` WRITE;
 /*!40000 ALTER TABLE `operational_excellence_dimensions` DISABLE KEYS */;
-INSERT INTO `operational_excellence_dimensions` VALUES (1,'Normal','X','X','X','X','','','X',NULL,NULL,NULL),(2,NULL,'X','X',NULL,NULL,'X',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `operational_excellence_dimensions` VALUES (1,'manage service quality'),(2,'realize scale economies'),(3,'optimize it internal processes'),(4,'standardize platforms and architecture'),(5,'deliver on schedule'),(6,'effectively support end users'),(7,'improve business productivity'),(8,'propose enabling solutions'),(9,'understand emerging technologies'),(10,'understand business units strengths');
 /*!40000 ALTER TABLE `operational_excellence_dimensions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +195,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `fk_user_company_idx` (`company_id`),
   CONSTRAINT `fk_user_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +204,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (5,'Juan','juan','juan','2','El mio',1,1,4),(6,'aline','aline','aline','Pump','Gym UAI',1,1,5);
+INSERT INTO `user` VALUES (16,'Admin','Admin','Admin','Admin','Admin',1,1,13);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -227,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-23 14:51:50
+-- Dump completed on 2016-01-22 14:47:22
