@@ -1,0 +1,178 @@
+body {
+background-color: #CBD8F5;
+text-align:center;
+margin-top: 80px;
+margin-left:auto; 
+margin-right:auto;
+font-family: Tahoma;
+font-size: 18px; 
+text-shadow: #eaeaea 0px 0px 1px; 
+}
+
+pre {
+font-family: Tahoma;
+font-size: 18px; a
+text-shadow: #eaeaea 0px 0px 1px; 
+}
+
+form{
+color: #000000;
+font-family: Tahoma;
+font-size: 18px; 
+text-shadow: #eaeaea 0px 0px 1px; 
+}
+
+table {
+font-family: Tahoma;
+size: 18px;
+text-align:center;
+margin-left:auto; 
+margin-right:auto;
+border: 1px;
+}
+
+
+a:link, a:active, a:visited{
+font-family: Tahoma;
+color: #6c8dc4;
+text-decoration: none; 
+text-shadow: #9bb4df 1px 1px 0px;
+-webkit-transition-duration: .5s;
+-moz-transition-duration: .5s; 
+}
+
+input[type=checkbox]{
+/* Double-sized Checkboxes */
+-ms-transform: scale(2); /* IE */
+-moz-transform: scale(2); /* FF */
+-webkit-transform: scale(2); /* Safari and Chrome */
+-o-transform: scale(2); /* Opera */
+padding: 10px;
+}
+
+
+a:hover{
+font-family: Tahoma;
+color: #ffffff;
+text-decoration: none; 
+text-shadow: #9bb4df 1px 1px 0px;
+-webkit-transition-duration: .5s;
+-moz-transition-duration: .5s;
+}
+
+.olvidoclave {
+color:red;
+}
+
+input[type=text] {
+	font-family: Tahoma;
+	size: 18px;
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type=password]:focus {
+    border-color:#333;
+}
+input[type=password] {
+	font-family: Tahoma;
+	size: 18px;
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type=text]:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+	font-family: Tahoma;
+	background-color:#ffffff;
+	color:#6c8dc4;
+	font-size:18px;
+	line-height:30px;
+	border-radius:20px;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border:20px;
+	width:240px;
+	height:64px
+	
+}
+input[type=submit]:link, input[type=submit]:active, input[type=submit]:hover {
+	font-family: Tahoma;
+	background-color:#6c8dc4;
+	color:#fff;
+	font-family:'Helvetica Neue',sans-serif;
+	font-size:18px;
+	line-height:30px;
+	border-radius:20px;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border:0;
+	width:240px;
+	height:64px
+}
+
+.container{
+	width: 300px;
+	height:300px;
+	margin: 0 auto;
+	position:relative;
+	overflow:hidden;
+}
+
+.planet{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:url(C:/xampp/htdocs/planet.png) no-repeat center center;
+}
+
+.rocket{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:url(C:/xampp/htdocs/rocket.png) no-repeat 50px center;
+
+	/* Chrome still requires the -webkit- prefix */
+	-webkit-animation:orbit 2s linear infinite;
+	animation:orbit 2s linear infinite;
+	transition:background-position 0.01s;
+}
+
+.container:hover .rocket{
+	background-position:20px center;
+}
+
+/* Define the keyframes of the animation */
+
+@-webkit-keyframes orbit {
+	from {
+		-webkit-transform:rotate(0deg);}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+@keyframes orbit {
+	from {
+		transform:rotate(0deg);
+
+		/* I am including the -webkit-transform properties, because
+		   Chrome might start supporting keyframe without prefix in the future,
+		   but we can't be certain whether it will support prefix-free transform
+		   at the same time */
+
+		-webkit-transform:rotate(0deg);}
+	to {
+		transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+	}
+}
