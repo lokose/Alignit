@@ -9,5 +9,4 @@ include 'class.php';
 	else{
 		$c->getall($a->compid);
 	}
-	
 ?>
