@@ -3,7 +3,7 @@ class usuario{
 	public $conn;
 	public $id;
 	public $user;//usuario
-	public $pass;//contraseÃ±a
+	public $pass;//contraseña
 	public $mail;//email
 	public $posi;//posicion
 	public $depa;//departamento
@@ -224,6 +224,12 @@ class IT_Assets{
 		}
 		echo "]";
 	}
+	
+	public function getmenu1($fk){
+		$this->connect();
+		$this->itname = mysqli_query($this->conn, "SELECT * FROM it_assets WHERE company_id = $fk");
+	}
+	
 }
 
 class company{
@@ -241,7 +247,7 @@ class company{
    		$rve = mysqli_query($this->conn, $rev);
    		$ver = mysqli_fetch_object($rve);
    		if ($ver != FALSE || $ver!= ""){
-   			echo "La compaÃ±ia ya existe. Se informarÃ¡ a sus superiores de su flojera";
+   			echo "La compañia ya existe. Se informará a sus superiores de su flojera";
    			$this->id = $ver->id;
    		}
    		else{
@@ -308,6 +314,11 @@ class Business_Objectives{
 			$rows[] = $r;
 		}
 		print json_encode($rows);
+	}
+	
+	public function getmenu1($fk){
+		$this->connect();
+		$this->buname = mysqli_query($this->conn, "SELECT * FROM business_objectives WHERE company_id = $fk");
 	}
 	
 	public function getmenu($fk){
@@ -702,6 +713,7 @@ class it_excellence{
 		$this->res = mysqli_query($this->conn, $sql);
 			
 	}
+	
 	}
 	//--------------------------------------------------------------------------------------------------------------
 

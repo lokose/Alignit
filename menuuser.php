@@ -17,12 +17,18 @@
 
     <title>Menu User</title><br><br> 
     <link type="text/css" rel="stylesheet" href="css.css">
+	 <style type="text/css">
+
+<!-- esto sirve para trasponer la tabla con la informacion
+saca esta etiqueta style y su contenido para verla ordenada de otra manera, aunque con esto se ve mejor -->
+	</style>
+	
 </head> 
 <body>  
-<div class="col-md-1"></div><div class="col-md-4">
+<div class="col-md-1"></div><div class="col-md-4" class='centraTabla'>
 	
 	<h3>It Assets</h3><br>
-	<table id='IT' > </table><br>
+	<table id='IT' class="table" > </table><br>
 	
 	<?php 
 	if($a->edit == 1){
@@ -31,10 +37,10 @@
 	?>
 	<br><a href = 'GranIT.php'><input type='submit' value=' See It Assets'></a>
 
-</div><div class="col-md-2"></div><div class="col-md-4">
+</div><div class="col-md-2"></div><div class="col-md-4" class='centraTabla'>
 
 	<h3>Business Objectives</h3><br>
-	<table id='BU' > </table><br>
+	<table id='BU' class="table" > </table><br>
 	
 	<?php 
 	if($a->edbu == 1){
@@ -46,18 +52,27 @@
 
 </div><div class="col-md-1"></div>
 
+	<div class="col-md-3"></div><div class="col-md-6" class='centraTabla'>
+	
+	<br><br><br><h3>It Assets/Business Objectives</h3>
+	<br><table id='Gran' class="table"></table>
+	<br><br><br><a href = 'salir.php'><input type='submit' value=' Log Out'> </a>
+	<br><br>
+	
+	</div><div class="col-md-3"></div>
+
 <script language="javascript" type="text/javascript" src ="jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 
-	$.ajax({
+$.ajax({
 	 type: 'POST',
 	 url: 'ajaxit.php',
 	 dataType: 'json',
 	 success: function (response) {
 		var trHTML =
-		'<tr><th>Name</th><th>Budget</th><th>Headcount</th><th>Update</th><th>Detail</th><th>Delete</th></tr>';
+		'<tr bgcolor ="#FFFFFF"><th>Name</th><th>Budget</th><th>Headcount</th><th>Update</th><th>Detail</th><th>Delete</th></tr>';
 		for(var f=0;f<response.length;f++){
-			trHTML += '<tr id="'+response[f]['id']+'">'+
+			trHTML += '<tr bgcolor ="#FFFFFF" id="'+response[f]['id']+'">'+
 			'<td>'+response [f]['name']+'</td>'+
 			'<td>'+response [f]['budget']+'</td>'+
 			'<td>'+response [f]['headcount']+'</td>'+
@@ -89,15 +104,15 @@
           });
 		  
 	  }});
-	  $.ajax({
+$.ajax({
 	 type: 'POST',
 	 url: 'ajaxbu.php',
 	 dataType: 'json',
 	 success: function (response) {
 		var trHTML =
-		'<tr><th>Name</th><th>Update</th><th>Detail</th><th>Delete</th></tr>';
+		'<tr bgcolor ="#FFFFFF"><th>Name</th><th>Update</th><th>Detail</th><th>Delete</th></tr>';
 		for(var f=0;f<response.length;f++){
-			trHTML += '<tr id="'+response[f]['id']+'">'+
+			trHTML += '<tr bgcolor ="#FFFFFF" id="'+response[f]['id']+'">'+
 			'<td>'+response [f]['name']+'</td>'+
 			'<td><a href=modbu.php?id='+response[f]['id']+'>Modify</a></td>'+
 			'<td><a href=detbu.php?id='+response[f]['id']+'>Detail</a></td>'+
@@ -124,9 +139,55 @@
              $("#"+id).slideToggle("Slow","swing").html("");
 			 
 			
-          });
-		  
+          }); 
+        
 	  }});
+  
+  $.ajax({
+		 type: 'POST',
+		 url: 'ajaxmenu.php',
+		 dataType: 'json',
+		 success: function (response) {
+			var trHTML =
+			'<tr bgcolor ="#FFFFFF"><td></td>';
+			for(var f=0;f<response.length;f++){
+				trHTML += '<th>'+response[f]['name']+'</th>';
+			}
+			
+			trHTML += '</tr>';
+			  $.ajax({
+					 type: 'POST',
+					 url: 'ajaxmenu2.php',
+					 dataType: 'json',
+					 success: function (responses) {
+						 $.ajax({
+							 type: 'POST',
+							 url: 'ajaxmenux.php',
+							 dataType: 'json',
+							 success: function (responsex) {
+								 var l=0;
+								 for(var k=0;k<responses.length;k++){
+									 if( k%2==0){
+											trHTML +='<tr bgcolor ="#CBD8F5"><th>'+responses[k]['name']+'</th>';
+											}
+										else {
+											trHTML +='<tr bgcolor ="#FFFFFF"><th>'+responses[k]['name']+'</th>';
+											}
+					
+										for(var m=0;m<f;m++){
+											trHTML += '<td>'+responsex[l]['equis']+'</td>';
+											l++;
+										}
+									}
+
+									trHTML += '</tr>';
+								  $('#Gran').html(trHTML);
+							 }});
+					 }});
+		}
+	 });
+ 
+ 
 </script>
 </body>  
 </html>

@@ -19,7 +19,7 @@
 	    ?>
 
 		
-<a href = 'ModifBU.php'>Go to Menu</a>
+<a href = 'menuuser.php'>Go to Menu</a>
 
 </body>  
 </html>

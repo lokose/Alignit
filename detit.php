@@ -19,7 +19,7 @@
 	    ?>
 		
 
-<a href = 'ModifIT.php'>Go Back</a>
+<a href = 'menuuser.php'>Go Back</a>
 </pre>
 </body>  
 </html>

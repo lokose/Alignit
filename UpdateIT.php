@@ -9,7 +9,7 @@
     $b->head = $_POST['head'];
     $b->editar();
     if ($b->help == 1){
-    	header("Location: granit.php");
+    	header("Location: menuuser.php");
     	echo "Actualizacion exitosa";
     }
     else{

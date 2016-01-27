@@ -7,7 +7,7 @@
     $b->name = $_POST['name'];
     $b->editar();
     if ($b->helpme == 1){
-    	header("Location: granBU.php");
+    	header("Location: menuuser.php");
     	echo "Actualizacion exitosa";
     }
     else{
