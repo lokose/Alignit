@@ -15,6 +15,8 @@
 	    }
 	    
 	    $c = new it_excellence();
+	    $c->arreglo();
+	    $c->arreglo2();
 	    $c->check();
 	    ?>
 		

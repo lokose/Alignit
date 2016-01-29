@@ -389,24 +389,50 @@ class it_excellence{
 	public function connect(){
 		$this->conn = mysqli_connect("localhost","root","","project");
 	}
+		public function arreglo(){
+		
+		array ( $arr[1] = 'manage_service_quality',
+				$arr[2] = 'realize_scale_economies',
+				$arr[3] = 'optimize_it_internal_processes',
+				$arr[4] = 'standardize_platforms_and_architecture',
+				$arr[5] = 'deliver_on_schedule',
+				$arr[6] = 'effectively_support_end_users',
+				$arr[7] = 'improve_business_productivity',
+				$arr[8] = 'propose_enabling_solutions',
+				$arr[9] = 'understand_emerging_technologies',
+				$arr[10] = 'understand_business_units_strengths'
+		);
+	}
+	
+	public function arreglo2(){
+		
+		array(  $arre[1] = 'Manage Service Quality',
+				$arre[2] = 'Realize Scale Economies',
+				$arre[3] = 'Optimize It Internal Processes',
+				$arre[4] = 'Standardize Platforms and Architecture',
+				$arre[5] = 'Deliver on Schedule',
+				$arre[6] = 'Effectively Support end Users',
+				$arre[7] = 'Improve Business Productivity',
+				$arre[8] = 'Propose Enabling Solutions',
+				$arre[9] = 'Understand Emerging Technologies',
+				$arre[10] = 'Understand Business Units Strengths'
+				
+		);
+		
+	}
 	public function check(){
 		$this->connect();
 		$this->id = $_GET['id'];
-		//echo $this->id;
 
 		$was = "SELECT company_id FROM it_assets WHERE id = $this->id";
 		$wes = mysqli_query($this->conn, $was);
 		$cid = mysqli_fetch_array($wes);
-
-		
-		//$row = mysqli_fetch_assoc($khe)
 		
 		$fast = "SELECT name from it_assets WHERE id = $this->id";
 		$quer = mysqli_query($this->conn, $fast);
 		if ($col = mysqli_fetch_array($quer)){
 			echo $col[0];
 		}
-		//echo .$_REQUEST['id'];}
 
 		echo "";
 		echo "<table border=1>";
@@ -414,208 +440,76 @@ class it_excellence{
 		echo "<th>Operational Excellence</th><th>Check</th>";
 		echo "</tr>";
 		
-		
-		//$ex3 = mysqli_fetch_assoc($ex2);
 		$que = "SELECT *
 		FROM alignment_assets_excellence, it_assets 
-		WHERE it_assets_id = it_assets.id and it_assets.id = $this->id
+		WHERE alignment_assets_excellence.it_assets_id = it_assets.id and it_assets.id = $this->id
 		and it_assets.company_id = $cid[0]";
 		$khe = mysqli_query($this->conn, $que);
 		$z = 1;
 		
 		while($fila = mysqli_fetch_object($khe)){
 			$z = 0;
-/////////////////que y khe estan dando complicaciones
-/*		echo "arr";
-		echo "<br>";
-		for ($r = 0; $r<count($arr); $r++){
-			echo $arr[$r];
-		}
-		echo "<br>";
-		echo "ar2";
-		for ($j = 0; $j<count($ar2); $j++){
-			echo $ar2[$j];
-		}*/
-///////////////////////////////////////////////////7
-		
-			if($fila->operational_excellence_dimensions_id == 1){
-					$this->manage_service_quality = "X";
+			$i = 1;
+			
+			while(isset($arr[$i])){
+				
+				if($fila->operational_excellence_dimensions_id == $i){
+						$this->$arr[$i] = "X";
 				}
-				if($fila->operational_excellence_dimensions_id == 2){
-					$this->realize_scale_economies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 3){
-					$this->optimize_it_internal_processes = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 4){
-					$this->standardize_platforms_and_architecture = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 5){
-					$this->deliver_on_schedule = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 6){
-					$this->effectively_support_end_users = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 7){
-					$this->improve_business_productivity = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 8){
-					$this->propose_enabling_solutions = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 9){
-					$this->understand_emerging_technologies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 10){
-					$this->understand_business_units_strengths = "X";
-		}}
-
-			if($z == 0){		
-		
-		echo "<form method ='post' action='procesit.php?id=".$this->id."'>";
-
-		if ($this->manage_service_quality == "X"){
-			echo "<tr><td>Manage Service Quality</td><td><input type='checkbox' name='ed01' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Manage Service Quality</td><td><input type='checkbox' name='ed01'></td></tr>";				
+			$i++;
+			}
 		}
 
-		if ($this->realize_scale_economies == "X"){
-			echo "<tr><td>Realize Scale Economies</td><td><input type='checkbox' name='ed02' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Realize Scale Economies</td><td><input type='checkbox' name='ed02'></td></tr>";				
-		}
+		if($z == 0){		
 		
-		if ($this->optimize_it_internal_processes == "X"){
-			echo "<tr><td>Optimize IT Internal Process</td><td><input type='checkbox' name='ed03' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Optimize IT Internal Process</td><td><input type='checkbox' name='ed03'></td></tr>";				
-		}
+			echo "<form method ='post' action='procesit.php?id=".$this->id."'>";
+			
+			$i = 1;
 		
-		if ($this->standardize_platforms_and_architecture == "X"){
-			echo "<tr><td>Standardize Platforms and Architecture</td><td><input type='checkbox' name='ed04' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Standardize Platforms and Architecture</td><td><input type='checkbox' name='ed04'></td></tr>";				
-		}
-		
-		if ($this->deliver_on_schedule == "X"){
-			echo "<tr><td>Deliver on Schedule</td><td><input type='checkbox' name='ed05' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Deliver on Schedule</td><td><input type='checkbox' name='ed05'></td></tr>";				
-		}
-		
-		if ($this->effectively_support_end_users == "X"){
-			echo "<tr><td>Effectively Support End Users</td><td><input type='checkbox' name='ed06' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Effectively Support End Users</td><td><input type='checkbox' name='ed06'></td></tr>";				
-		}
-		
-		if ($this->improve_business_productivity == "X"){
-			echo "<tr><td>Improve Business Productivity</td><td><input type='checkbox' name='ed07' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Improve Business Productivity</td><td><input type='checkbox' name='ed07'></td></tr>";				
-		}
-		
-		if ($this->propose_enabling_solutions == "X"){
-			echo "<tr><td>Propose Enabling Solutions</td><td><input type='checkbox' name='ed08' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Propose Enabling Solutions</td><td><input type='checkbox' name='ed08'></td></tr>";				
-		}
-		
-		if ($this->understand_emerging_technologies == "X"){
-			echo "<tr><td>Understand Emerging Technologies</td><td><input type='checkbox' name='ed09' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Understand Emerging Technologies</td><td><input type='checkbox' name='ed09'></td></tr>";				
-		}
-		
-		if ($this->understand_business_units_strengths == "X"){
-			echo "<tr><td>Understand Business Units Strenghs</td><td><input type='checkbox' name='ed10' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Understand Business Units Strenghs</td><td><input type='checkbox' name='ed10'></td></tr>";				
-		}
-		echo "<input type='hidden' name='fkid' >";
-		echo "</tr>";
-		echo "</table>";
-		echo "<br><input type='submit' value='Submit'></br>";
-		} 
+			while(isset($arr[$i])) {
+
+			if ($this->$arr[$i] == "X"){
+				echo "<tr><td>".$arre[$i]."</td><td><input type='checkbox' name='ed".$i."' checked></td></tr>";				
+			}
+			else{
+				echo "<tr><td>".$arre[$i]."</td><td><input type='checkbox' name='ed".$i."'></td></tr>";				
+			}
+			$i++;
+			}
+			echo "<input type='hidden' name='fkid' >";
+			echo "</tr>";
+			echo "</table>";
+			echo "<br><input type='submit' value='Submit'></br>";
+			} 
 		
 		if ($z == 1) {
+			$i=1;
 			echo "<form method ='post' action='procesit.php?id=".$this->id."'>";
-			echo "<tr><td>Manage Service Quality</td><td><input type='checkbox' name='ed01'></td></tr>";
-			echo "<tr><td>Realize Scale Economies</td><td><input type='checkbox' name='ed02'></td></tr>";
-			echo "<tr><td>Optimize IT Internal Process</td><td><input type='checkbox' name='ed03'></td></tr>";
-			echo "<tr><td>Standardize Platforms and Architecture</td><td><input type='checkbox' name='ed04'></td></tr>";
-			echo "<tr><td>Deliver on Schedule</td><td><input type='checkbox' name='ed05'></td></tr>";
-			echo "<tr><td>Effectively Support End Users</td><td><input type='checkbox' name='ed06'></td></tr>";
-			echo "<tr><td>Improve Business Productivity</td><td><input type='checkbox' name='ed07'></td></tr>";
-			echo "<tr><td>Propose Enabling Solutions</td><td><input type='checkbox' name='ed08'></td></tr>";
-			echo "<tr><td>Understand Emerging Technologies</td><td><input type='checkbox' name='ed09'></td></tr>";
-			echo "<tr><td>Understand Business Units Strenghs</td><td><input type='checkbox' name='ed10'></td></tr>";
-		echo "</tr>";
-		echo "</table>";
-		echo "<br><input type='submit' value='Submit'></br>";
-}}
+			
+			while(isset($arre[$i])){
+				echo "<tr><td>".$arre[$i]."</td><td><input type='checkbox' name='ed".$i."'></td></tr>";
+			}
+			echo "</tr>";
+			echo "</table>";
+			echo "<br><input type='submit' value='Submit'></br>";
+		}
+}
 
 	public function mod(){
 		$this->connect();
 		$this->fkid = $_REQUEST['fkid'];
 		
-		$sql = "Delete from alignment_assets_excellence where it_assets_id = $this->id";
+		$sql = "Delete from alignment_assets_excellence where it_assets = $this->id";
 		$delete = mysqli_query($this->conn,$sql);
-	
+	$i = 1;
 		
-			if( $this->manage_service_quality == "X"){ 						//30 lineas de ineficiencia, hacer un arreglo!!
-		$sql = "insert into alignment_assets_excellence	values($this->id ,1)";
+	while(isset($arr[$i])){
+			if( $this->$arr[$i] == "X"){ 					
+		$sql = "insert into alignment_assets_excellence	values($i, $this->id)";
 		$insert=mysqli_query($this->conn, $sql);
 		}
-		if( $this->realize_scale_economies == "X"){ 
-		$sql = "insert into alignment_assets_excellence	values($this->id,2)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->optimize_it_internal_processes == "X"){ 	
-		$sql = "insert into alignment_assets_excellence	values($this->id,3)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->standardize_platforms_and_architecture == "X"){
-		$sql = "insert into alignment_assets_excellence	values($this->id,4)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->deliver_on_schedule == "X"){ 
-		$sql = "insert into alignment_assets_excellence	values($this->id,5)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->effectively_support_end_users == "X"){ 
-		$sql = "insert into alignment_assets_excellence	values($this->id,6)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->improve_business_productivity == "X"){ 	
-		$sql = "insert into alignment_assets_excellence	values($this->id,7)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->propose_enabling_solutions == "X"){ 		
-		$sql = "insert into alignment_assets_excellence	values($this->id,8)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->understand_emerging_technologies == "X"){ 	
-		$sql = "insert into alignment_assets_excellence	values($this->id,9)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->understand_business_units_strengths == "X"){ 
-		$sql = "insert into alignment_assets_excellence	values($this->id,10)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-
-		
-	}
+		$i++;
+	}}
 
 	//-------------------------------------------------------------------------------------------------------
 	public function the_great_table($fk){
@@ -627,71 +521,36 @@ class it_excellence{
 		$f=0;
 		echo "[";
 		while($row = mysqli_fetch_object($khe)){
-				$this->manage_service_quality = " ";
-				$this->realize_scale_economies = " ";
-				$this->optimize_it_internal_processes = " ";
-				$this->standardize_platforms_and_architecture = " ";
-				$this->deliver_on_schedule = " ";
-				$this->effectively_support_end_users = " ";
-				$this->improve_business_productivity = " ";
-				$this->propose_enabling_solutions = " ";
-				$this->understand_emerging_technologies = " ";
-				$this->understand_business_units_strengths = " ";
-			
+			$i=1;
+			while(isset($arr[$i])){
+				$this->$arr[$i] = " ";
+				$i++;
+			}
 				
 			$query = "SELECT * from alignment_assets_excellence 
-			WHERE it_assets_id = ".$row->id;
+			WHERE it_assets = ".$row->id;
 			$do = mysqli_query($this->conn, $query);
 			while ($fila = mysqli_fetch_object($do)){
-				
-				if($fila->operational_excellence_dimensions_id == 1){
-					$this->manage_service_quality = "X";
+				$i=1;
+				while(isset($arr[$i])){
+				if($fila->operational_excellence_dimensions_id == $i){
+					$this->$arr[$i] = "X";
 				}
-				if($fila->operational_excellence_dimensions_id == 2){
-					$this->realize_scale_economies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 3){
-					$this->optimize_it_internal_processes = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 4){
-					$this->standardize_platforms_and_architecture = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 5){
-					$this->deliver_on_schedule = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 6){
-					$this->effectively_support_end_users = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 7){
-					$this->improve_business_productivity = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 8){
-					$this->propose_enabling_solutions = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 9){
-					$this->understand_emerging_technologies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 10){
-					$this->understand_business_units_strengths = "X";
-				}
-				
+				$i++;
+				}				
 			}
 			
-			if($f!=0){ echo ", ";
+			if($f!=0){ 
+				echo ", ";
 			}
 				echo '{"idit":"'.$row->id.'",'.
-						'"name":"'.$row->name.'",'.
-						'"manage_service_quality":"'.$this->manage_service_quality.'",'.
-						'"realize_scale_economies":"'.$this->realize_scale_economies.'",'.
-						'"optimize_it_internal_processes":"'.$this->optimize_it_internal_processes.'",'.
-						'"standardize_platforms_and_architecture":"'.$this->standardize_platforms_and_architecture.'",'.
-						'"deliver_on_schedule":"'.$this->deliver_on_schedule.'",'.
-						'"effectively_support_end_users":"'.$this->effectively_support_end_users.'",'.
-						'"improve_business_productivity":"'.$this->improve_business_productivity.'",'.
-						'"propose_enabling_solutions":"'.$this->propose_enabling_solutions.'",'.
-						'"understand_emerging_technologies":"'.$this->understand_emerging_technologies.'",'.
-						'"understand_business_units_strengths":"'.$this->understand_business_units_strengths.'"}';
-						$f=1;
+						'"name":"'.$row->name.'",';
+						
+			while(isset($arr[$i])){				
+				echo '"'.$arr[$i].'":"'.$this->$arr[$i].'",';
+				$i++;
+			}
+			$f=1;
 		}
 			echo "]";
 
@@ -712,11 +571,10 @@ class it_excellence{
 		$sql = "SELECT * FROM alignment_assets_excellence WHERE it_assets_id = $fk";
 		$this->res = mysqli_query($this->conn, $sql);
 			
-	}
+	}}
 	
-	}
+	
 	//--------------------------------------------------------------------------------------------------------------
-
 
 
 
@@ -739,27 +597,55 @@ class bu_excellence{
 	public $understand_business_units_strengths;
 	
 	public $a = array();
+	
+	public function arreglo(){
+		
+		array ( $arr[1] = 'manage_service_quality',
+				$arr[2] = 'realize_scale_economies',
+				$arr[3] = 'optimize_it_internal_processes',
+				$arr[4] = 'standardize_platforms_and_architecture',
+				$arr[5] = 'deliver_on_schedule',
+				$arr[6] = 'effectively_support_end_users',
+				$arr[7] = 'improve_business_productivity',
+				$arr[8] = 'propose_enabling_solutions',
+				$arr[9] = 'understand_emerging_technologies',
+				$arr[10] = 'understand_business_units_strengths'
+		);
+	}
+	
+	public function arreglo2(){
+		
+		array(  $arre[1] = 'Manage Service Quality',
+				$arre[2] = 'Realize Scale Economies',
+				$arre[3] = 'Optimize It Internal Processes',
+				$arre[4] = 'Standardize Platforms and Architecture',
+				$arre[5] = 'Deliver on Schedule',
+				$arre[6] = 'Effectively Support end Users',
+				$arre[7] = 'Improve Business Productivity',
+				$arre[8] = 'Propose Enabling Solutions',
+				$arre[9] = 'Understand Emerging Technologies',
+				$arre[10] = 'Understand Business Units Strengths'
+				
+		);
+		
+	}
+	
 	public function connect(){
 		$this->conn = mysqli_connect("localhost","root","","project");
 	}
 	public function check(){
 		$this->connect();
 		$this->id = $_GET['id'];
-		//echo $this->id;
 
 		$was = "SELECT company_id FROM business_objectives WHERE id = $this->id";
 		$wes = mysqli_query($this->conn, $was);
 		$cid = mysqli_fetch_array($wes);
-
-		
-		//$row = mysqli_fetch_assoc($khe)
 		
 		$fast = "SELECT name from business_objectives WHERE id = $this->id";
 		$quer = mysqli_query($this->conn, $fast);
 		if ($col = mysqli_fetch_array($quer)){
 			echo $col[0];
 		}
-		//echo .$_REQUEST['id'];}
 
 		echo "";
 		echo "<table border=1>";
@@ -767,8 +653,6 @@ class bu_excellence{
 		echo "<th>Operational Excellence</th><th>Check</th>";
 		echo "</tr>";
 		
-		
-		//$ex3 = mysqli_fetch_assoc($ex2);
 		$que = "SELECT *
 		FROM alignment_objectives_excellence, business_objectives 
 		WHERE alignment_objectives_excellence.business_objectives_id = business_objectives.id and business_objectives.id = $this->id
@@ -778,144 +662,49 @@ class bu_excellence{
 		
 		while($fila = mysqli_fetch_object($khe)){
 			$z = 0;
-/////////////////que y khe estan dando complicaciones
-/*		echo "arr";
-		echo "<br>";
-		for ($r = 0; $r<count($arr); $r++){
-			echo $arr[$r];
-		}
-		echo "<br>";
-		echo "ar2";
-		for ($j = 0; $j<count($ar2); $j++){
-			echo $ar2[$j];
-		}*/
-///////////////////////////////////////////////////7
-		
-		if($fila->operational_excellence_dimensions_id == 1){
-					$this->manage_service_quality = "X";
+			$i = 1;
+			
+			while(isset($arr[$i])){
+				
+				if($fila->operational_excellence_dimensions_id == $i){
+						$this->$arr[$i] = "X";
 				}
-				if($fila->operational_excellence_dimensions_id == 2){
-					$this->realize_scale_economies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 3){
-					$this->optimize_it_internal_processes = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 4){
-					$this->standardize_platforms_and_architecture = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 5){
-					$this->deliver_on_schedule = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 6){
-					$this->effectively_support_end_users = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 7){
-					$this->improve_business_productivity = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 8){
-					$this->propose_enabling_solutions = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 9){
-					$this->understand_emerging_technologies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 10){
-					$this->understand_business_units_strengths = "X";
-		}}
-
-			if($z == 0){		
-		
-		echo "<form method ='post' action='procesbu.php?id=".$this->id."'>";
-
-		if ($this->manage_service_quality == "X"){
-			echo "<tr><td>Manage Service Quality</td><td><input type='checkbox' name='ed01' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Manage Service Quality</td><td><input type='checkbox' name='ed01'></td></tr>";				
+			$i++;
+			}
 		}
 
-		if ($this->realize_scale_economies == "X"){
-			echo "<tr><td>Realize Scale Economies</td><td><input type='checkbox' name='ed02' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Realize Scale Economies</td><td><input type='checkbox' name='ed02'></td></tr>";				
-		}
+		if($z == 0){		
 		
-		if ($this->optimize_it_internal_processes == "X"){
-			echo "<tr><td>Optimize IT Internal Process</td><td><input type='checkbox' name='ed03' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Optimize IT Internal Process</td><td><input type='checkbox' name='ed03'></td></tr>";				
-		}
+			echo "<form method ='post' action='procesbu.php?id=".$this->id."'>";
+			
+			$i = 1;
 		
-		if ($this->standardize_platforms_and_architecture == "X"){
-			echo "<tr><td>Standardize Platforms and Architecture</td><td><input type='checkbox' name='ed04' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Standardize Platforms and Architecture</td><td><input type='checkbox' name='ed04'></td></tr>";				
-		}
-		
-		if ($this->deliver_on_schedule == "X"){
-			echo "<tr><td>Deliver on Schedule</td><td><input type='checkbox' name='ed05' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Deliver on Schedule</td><td><input type='checkbox' name='ed05'></td></tr>";				
-		}
-		
-		if ($this->effectively_support_end_users == "X"){
-			echo "<tr><td>Effectively Support End Users</td><td><input type='checkbox' name='ed06' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Effectively Support End Users</td><td><input type='checkbox' name='ed06'></td></tr>";				
-		}
-		
-		if ($this->improve_business_productivity == "X"){
-			echo "<tr><td>Improve Business Productivity</td><td><input type='checkbox' name='ed07' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Improve Business Productivity</td><td><input type='checkbox' name='ed07'></td></tr>";				
-		}
-		
-		if ($this->propose_enabling_solutions == "X"){
-			echo "<tr><td>Propose Enabling Solutions</td><td><input type='checkbox' name='ed08' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Propose Enabling Solutions</td><td><input type='checkbox' name='ed08'></td></tr>";				
-		}
-		
-		if ($this->understand_emerging_technologies == "X"){
-			echo "<tr><td>Understand Emerging Technologies</td><td><input type='checkbox' name='ed09' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Understand Emerging Technologies</td><td><input type='checkbox' name='ed09'></td></tr>";				
-		}
-		
-		if ($this->understand_business_units_strengths == "X"){
-			echo "<tr><td>Understand Business Units Strenghs</td><td><input type='checkbox' name='ed10' checked></td></tr>";				
-		}
-		else{
-			echo "<tr><td>Understand Business Units Strenghs</td><td><input type='checkbox' name='ed10'></td></tr>";				
-		}
-		echo "<input type='hidden' name='fkid' >";
-		echo "</tr>";
-		echo "</table>";
-		echo "<br><input type='submit' value='Submit'></br>";
-		} 
+			while(isset($arr[$i])) {
+
+			if ($this->$arr[$i] == "X"){
+				echo "<tr><td>".$arre[$i]."</td><td><input type='checkbox' name='ed".$i."' checked></td></tr>";				
+			}
+			else{
+				echo "<tr><td>".$arre[$i]."</td><td><input type='checkbox' name='ed".$i."'></td></tr>";				
+			}
+			$i++;
+			}
+			echo "<input type='hidden' name='fkid' >";
+			echo "</tr>";
+			echo "</table>";
+			echo "<br><input type='submit' value='Submit'></br>";
+			} 
 		
 		if ($z == 1) {
+			$i=1;
 			echo "<form method ='post' action='procesbu.php?id=".$this->id."'>";
-			echo "<tr><td>Manage Service Quality</td><td><input type='checkbox' name='ed01'></td></tr>";
-			echo "<tr><td>Realize Scale Economies</td><td><input type='checkbox' name='ed02'></td></tr>";
-			echo "<tr><td>Optimize IT Internal Process</td><td><input type='checkbox' name='ed03'></td></tr>";
-			echo "<tr><td>Standardize Platforms and Architecture</td><td><input type='checkbox' name='ed04'></td></tr>";
-			echo "<tr><td>Deliver on Schedule</td><td><input type='checkbox' name='ed05'></td></tr>";
-			echo "<tr><td>Effectively Support End Users</td><td><input type='checkbox' name='ed06'></td></tr>";
-			echo "<tr><td>Improve Business Productivity</td><td><input type='checkbox' name='ed07'></td></tr>";
-			echo "<tr><td>Propose Enabling Solutions</td><td><input type='checkbox' name='ed08'></td></tr>";
-			echo "<tr><td>Understand Emerging Technologies</td><td><input type='checkbox' name='ed09'></td></tr>";
-			echo "<tr><td>Understand Business Units Strenghs</td><td><input type='checkbox' name='ed10'></td></tr>";
-		echo "</tr>";
-		echo "</table>";
-		echo "<br><input type='submit' value='Submit'></br>";
+			
+			while(isset($arre[$i])){
+				echo "<tr><td>".$arre[$i]."</td><td><input type='checkbox' name='ed".$i."'></td></tr>";
+			}
+			echo "</tr>";
+			echo "</table>";
+			echo "<br><input type='submit' value='Submit'></br>";
 		}
 }
 
@@ -925,54 +714,18 @@ class bu_excellence{
 		
 		$sql = "Delete from alignment_objectives_excellence where business_objectives_id = $this->id";
 		$delete = mysqli_query($this->conn,$sql);
-	
+	$i = 1;
 		
-			if( $this->manage_service_quality == "X"){ 						//30 lineas de ineficiencia, hacer un arreglo!!
-		$sql = "insert into alignment_objectives_excellence	values(1, $this->id)";
+	while(isset($arr[$i])){
+			if( $this->$arr[$i] == "X"){ 					
+		$sql = "insert into alignment_objectives_excellence	values($i, $this->id)";
 		$insert=mysqli_query($this->conn, $sql);
 		}
-		if( $this->realize_scale_economies == "X"){ 
-		$sql = "insert into alignment_objectives_excellence	values(2, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->optimize_it_internal_processes == "X"){ 	
-		$sql = "insert into alignment_objectives_excellence	values(3, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->standardize_platforms_and_architecture == "X"){
-		$sql = "insert into alignment_objectives_excellence	values(4, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->deliver_on_schedule == "X"){ 
-		$sql = "insert into alignment_objectives_excellence	values(5, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->effectively_support_end_users == "X"){ 
-		$sql = "insert into alignment_objectives_excellence	values(6, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->improve_business_productivity == "X"){ 	
-		$sql = "insert into alignment_objectives_excellence	values(7, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->propose_enabling_solutions == "X"){ 		
-		$sql = "insert into alignment_objectives_excellence	values(8, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->understand_emerging_technologies == "X"){ 	
-		$sql = "insert into alignment_objectives_excellence	values(9, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-		if( $this->understand_business_units_strengths == "X"){ 
-		$sql = "insert into alignment_objectives_excellence	values(10, $this->id)";
-		$insert=mysqli_query($this->conn, $sql);
-		}
-
-		
-	}
+		$i++;
+	}}
 
 	//-------------------------------------------------------------------------------------------------------
-	public function the_great_table($fk){  // hacer eficiente
+	public function the_great_table($fk){
 		$this->connect();
 		
 		$que = "SELECT name, id
@@ -981,71 +734,36 @@ class bu_excellence{
 		$f=0;
 		echo "[";
 		while($row = mysqli_fetch_object($khe)){
-				$this->manage_service_quality = " ";
-				$this->realize_scale_economies = " ";
-				$this->optimize_it_internal_processes = " ";
-				$this->standardize_platforms_and_architecture = " ";
-				$this->deliver_on_schedule = " ";
-				$this->effectively_support_end_users = " ";
-				$this->improve_business_productivity = " ";
-				$this->propose_enabling_solutions = " ";
-				$this->understand_emerging_technologies = " ";
-				$this->understand_business_units_strengths = " ";
-			
+			$i=1;
+			while(isset($arr[$i])){
+				$this->$arr[$i] = " ";
+				$i++;
+			}
 				
 			$query = "SELECT * from alignment_objectives_excellence 
 			WHERE business_objectives_id = ".$row->id;
 			$do = mysqli_query($this->conn, $query);
 			while ($fila = mysqli_fetch_object($do)){
-				
-				if($fila->operational_excellence_dimensions_id == 1){
-					$this->manage_service_quality = "X";
+				$i=1;
+				while(isset($arr[$i])){
+				if($fila->operational_excellence_dimensions_id == $i){
+					$this->$arr[$i] = "X";
 				}
-				if($fila->operational_excellence_dimensions_id == 2){
-					$this->realize_scale_economies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 3){
-					$this->optimize_it_internal_processes = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 4){
-					$this->standardize_platforms_and_architecture = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 5){
-					$this->deliver_on_schedule = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 6){
-					$this->effectively_support_end_users = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 7){
-					$this->improve_business_productivity = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 8){
-					$this->propose_enabling_solutions = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 9){
-					$this->understand_emerging_technologies = "X";
-				}
-				if($fila->operational_excellence_dimensions_id == 10){
-					$this->understand_business_units_strengths = "X";
-				}
-				
+				$i++;
+				}				
 			}
 			
-			if($f!=0){ echo ", ";
+			if($f!=0){ 
+				echo ", ";
 			}
 				echo '{"idob":"'.$row->id.'",'.
-						'"name":"'.$row->name.'",'.
-						'"manage_service_quality":"'.$this->manage_service_quality.'",'.
-						'"realize_scale_economies":"'.$this->realize_scale_economies.'",'.
-						'"optimize_it_internal_processes":"'.$this->optimize_it_internal_processes.'",'.
-						'"standardize_platforms_and_architecture":"'.$this->standardize_platforms_and_architecture.'",'.
-						'"deliver_on_schedule":"'.$this->deliver_on_schedule.'",'.
-						'"effectively_support_end_users":"'.$this->effectively_support_end_users.'",'.
-						'"improve_business_productivity":"'.$this->improve_business_productivity.'",'.
-						'"propose_enabling_solutions":"'.$this->propose_enabling_solutions.'",'.
-						'"understand_emerging_technologies":"'.$this->understand_emerging_technologies.'",'.
-						'"understand_business_units_strengths":"'.$this->understand_business_units_strengths.'"}';
-						$f=1;
+						'"name":"'.$row->name.'",';
+						
+			while(isset($arr[$i])){				
+				echo '"'.$arr[$i].'":"'.$this->$arr[$i].'",';
+				$i++;
+			}
+			$f=1;
 		}
 			echo "]";
 

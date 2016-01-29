@@ -14,55 +14,55 @@
 		else{
 			$c->a[0] = 0;
 		}
-	    if(isset($_POST['ed01'])){
+	    if(isset($_POST['ed1'])){
 	    	$c->a[1] = 1;
 		}
 		else{
 			$c->a[1] = 0;
 		}
-	    if(isset($_POST['ed02'])){
+	    if(isset($_POST['ed2'])){
 	    	$c->a[2] = 1;
 		}
 		else{
 			$c->a[2] = 0;
 		}
-	    if(isset($_POST['ed03'])){
+	    if(isset($_POST['ed3'])){
 	    	$c->a[3] = 1;
 		}
 		else{
 			$c->a[3] = 0;
 		}
-	    if(isset($_POST['ed04'])){
+	    if(isset($_POST['ed4'])){
 	    	$c->a[4] = 1;
 		}
 		else{
 			$c->a[4] = 0;
 		}
-	    if(isset($_POST['ed05'])){
+	    if(isset($_POST['ed5'])){
 	    	$c->a[5] = 1;
 		}
 		else{
 			$c->a[5] = 0;
 		}
-	    if(isset($_POST['ed06'])){
+	    if(isset($_POST['ed6'])){
 	    	$c->a[6] = 1;
 		}
 		else{
 			$c->a[6] = 0;
 		}
-	    if(isset($_POST['ed07'])){
+	    if(isset($_POST['ed7'])){
 	    	$c->a[7] = 1;
 		}
 		else{
 			$c->a[7] = 0;
 		}
-	    if(isset($_POST['ed08'])){
+	    if(isset($_POST['ed8'])){
 	    	$c->a[8] = 1;
 		}
 		else{
 			$c->a[8] = 0;
 		}
-	    if(isset($_POST['ed09'])){
+	    if(isset($_POST['ed9'])){
 	    	$c->a[9] = 1;
 		}
 		else{

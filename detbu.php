@@ -15,6 +15,8 @@
 	    }
 	    
 	    $c = new bu_excellence();
+	    $c->arreglo();
+	    $c->arreglo2();
 	    $c->check();
 	    ?>
 

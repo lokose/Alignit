@@ -7,6 +7,8 @@ include 'class.php';
 	    	echo "Ud no tiene permiso para estar aca.";
 	    }
 	else{
+
+		$c->arreglo();
 		$c->the_great_table($a->compid);
 	}
 	
